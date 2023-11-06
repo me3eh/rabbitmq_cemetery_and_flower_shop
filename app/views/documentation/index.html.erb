@@ -1,0 +1,29 @@
+<!doctype html> <!-- Important: must specify -->
+<html>
+<head>
+  <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 charecters -->
+  <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+  <script>
+      function setApiKey(){
+          const doc = document.getElementById('thedoc');
+          const keyInput = document.getElementById('key-input-val');
+          doc.setAttribute('api-key-name','Token');
+          doc.setAttribute('api-key-location','header');
+          doc.setAttribute('api-key-value',keyInput.value);
+      }
+  </script>
+</head>
+<body>
+<rapi-doc id='thedoc'
+          spec-url = "/swagger_doc"
+          allow-authentication = "false"
+          api-key-name = "Token"
+          api-key-location = "header"
+          api-key-value = <%=@token%> >
+  <div slot='header' style='display:flex; margin:0 16px;'>
+    <input class='txt' id='key-input-val' type='text' >
+    <button class='btn' onclick='setApiKey()'> Set Token </button >
+  </div>
+</rapi-doc>
+</body>
+</html>
